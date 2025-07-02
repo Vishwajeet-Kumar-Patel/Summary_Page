@@ -50,23 +50,23 @@ export default function DefectDrilldown({ data, defectType }) {
   };
 
   return (
-    <div className="w-full h-[500px] p-6 rounded-xl shadow-lg border border-[#2e3248]">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-white capitalize">
+    <div className="w-full h-[400px] md:h-[500px] p-4 md:p-6 rounded-xl shadow-lg border border-[#2e3248] bg-[#1c1f2c]">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-1">
+        <h2 className="text-lg md:text-xl font-semibold text-white capitalize">
           Breakdown of {defectLabels[defectType] || defectType} Defects
         </h2>
-        <span className="text-sm text-gray-400">Subtype distribution</span>
+        <span className="text-xs md:text-sm text-gray-400">Subtype distribution</span>
       </div>
 
       {Object.keys(subtypeCounts).length > 0 ? (
         <>
-          <div className="relative h-[260px] w-full">
+          <div className="relative h-[220px] md:h-[300px] w-full">
             <Pie
               data={chartData}
               options={{
                 responsive: true,
                 maintainAspectRatio: false,
-                cutout: '60%', // Donut
+                cutout: '60%', // Donut chart center cut
                 plugins: {
                   legend: {
                     position: 'bottom',
@@ -91,9 +91,9 @@ export default function DefectDrilldown({ data, defectType }) {
             />
           </div>
 
-          <ul className="mt-4 text-sm text-slate-300 space-y-1 overflow-y-auto max-h-[160px]">
+          <ul className="mt-4 text-sm text-slate-300 space-y-1 max-h-[100px] overflow-auto pr-2">
             {Object.entries(subtypeCounts).map(([key, value]) => (
-              <li key={key} className="flex justify-between">
+              <li key={key} className="flex justify-between text-xs md:text-sm">
                 <span className="capitalize">{key}</span>
                 <span>
                   {value} student{value > 1 ? 's' : ''} (

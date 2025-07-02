@@ -60,9 +60,9 @@ export default function FilterPanel({ data, setFilteredData }) {
   };
 
   return (
-    <div className="sticky top-0 z-50 flex flex-wrap items-center gap-3 p-2 bg-transparent text-white backdrop-blur-sm">
+    <div className="flex flex-wrap items-center gap-3 p-4 bg-transparent text-white rounded-lg backdrop-blur-sm border border-[#2e3248] shadow-md">
       {/* Date Range Picker */}
-      <div className="tooltip tooltip-bottom" data-tip="Filter by Date Range">
+      <div className="w-full sm:w-[160px]">
         <DatePicker
           selectsRange
           startDate={startDate}
@@ -73,84 +73,76 @@ export default function FilterPanel({ data, setFilteredData }) {
           showYearDropdown
           dropdownMode="select"
           isClearable
-          className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-[160px]"
+          className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full"
         />
       </div>
 
       {/* School Filter */}
-      <div className="tooltip tooltip-bottom" data-tip="Filter by School">
-        <select
-          value={school}
-          onChange={(e) => setSchool(e.target.value)}
-          className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-[140px]"
-        >
-          <option value="">School</option>
-          {schoolOptions.map((s, i) => (
-            <option key={i} value={s}>{s}</option>
-          ))}
-        </select>
-      </div>
+      <select
+        value={school}
+        onChange={(e) => setSchool(e.target.value)}
+        className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full sm:w-[140px]"
+      >
+        <option value="">School</option>
+        {schoolOptions.map((s, i) => (
+          <option key={i} value={s}>{s}</option>
+        ))}
+      </select>
 
       {/* Session Filter */}
-      <div className="tooltip tooltip-bottom" data-tip="Filter by Session">
-        <select
-          value={session}
-          onChange={(e) => setSession(e.target.value)}
-          className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-[130px]"
-        >
-          <option value="">Session</option>
-          <option value="Jan - June">Jan - June</option>
-          <option value="July - Dec">July - Dec</option>
-        </select>
-      </div>
+      <select
+        value={session}
+        onChange={(e) => setSession(e.target.value)}
+        className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full sm:w-[130px]"
+      >
+        <option value="">Session</option>
+        <option value="Jan - June">Jan - June</option>
+        <option value="July - Dec">July - Dec</option>
+      </select>
 
       {/* Year Filter */}
-      <div className="tooltip tooltip-bottom" data-tip="Filter by Year">
-        <select
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
-          className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-[100px]"
-        >
-          <option value="">Year</option>
-          {yearOptions.map((y, i) => (
-            <option key={i} value={y}>{y}</option>
-          ))}
-        </select>
-      </div>
+      <select
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
+        className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full sm:w-[100px]"
+      >
+        <option value="">Year</option>
+        {yearOptions.map((y, i) => (
+          <option key={i} value={y}>{y}</option>
+        ))}
+      </select>
 
       {/* Age Group Filter */}
-      <div className="tooltip tooltip-bottom" data-tip="Filter by Age Group">
-        <select
-          value={ageGroup}
-          onChange={(e) => setAgeGroup(e.target.value)}
-          className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-[100px]"
-        >
-          <option value="">Age</option>
-          <option value="<10">&lt;10</option>
-          <option value="10–14">10–14</option>
-          <option value="15–18">15–18</option>
-          <option value="18+">18+</option>
-        </select>
-      </div>
+      <select
+        value={ageGroup}
+        onChange={(e) => setAgeGroup(e.target.value)}
+        className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full sm:w-[100px]"
+      >
+        <option value="">Age</option>
+        <option value="<10">&lt;10</option>
+        <option value="10–14">10–14</option>
+        <option value="15–18">15–18</option>
+        <option value="18+">18+</option>
+      </select>
 
       {/* Search Box */}
-      <div className="tooltip tooltip-bottom" data-tip="Search by Name or ID">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-[160px]"
-        />
-      </div>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full sm:w-[160px]"
+      />
 
       {/* Reset Button */}
-      <button
-        onClick={handleReset}
-        className="ml-auto text-sm bg-red-600 hover:bg-red-700 px-4 py-1 rounded-lg transition-all"
-      >
-        Reset
-      </button>
+      <div className="w-full sm:w-auto ml-auto">
+        <button
+          onClick={handleReset}
+          className="w-full sm:w-auto text-sm bg-red-600 hover:bg-red-700 px-4 py-1 rounded-lg transition-all mt-2 sm:mt-0"
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
 }

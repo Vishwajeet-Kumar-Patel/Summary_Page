@@ -57,6 +57,12 @@ export default function DefectBarChart({ data, onBarClick }) {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        bottom: 30, // prevents x-axis labels from being cut off
+      },
+    },
     animation: {
       duration: 700,
       easing: 'easeInOutQuart',
@@ -94,7 +100,7 @@ export default function DefectBarChart({ data, onBarClick }) {
           display: true,
           text: 'Number of Students',
           color: '#e5e7eb',
-          font: { size: 14 },
+          font: { size: 12 },
         },
         grid: {
           color: '#374151',
@@ -103,12 +109,15 @@ export default function DefectBarChart({ data, onBarClick }) {
       x: {
         ticks: {
           color: '#9ca3af',
+          autoSkip: false,
+          maxRotation: 45,
+          minRotation: 0,
         },
         title: {
           display: true,
           text: 'Health Categories',
           color: '#e5e7eb',
-          font: { size: 14 },
+          font: { size: 12 },
         },
         grid: {
           display: false,
@@ -118,12 +127,12 @@ export default function DefectBarChart({ data, onBarClick }) {
   };
 
   return (
-    <div className="w-full h-[500px] p-6 rounded-xl shadow-lg transition-shadow duration-300 border border-[#2e3248]">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-white">
+    <div className="w-full h-[500px] p-4 md:p-6 rounded-xl shadow-lg border border-[#2e3248] bg-[#1c1f2c] overflow-hidden">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-1">
+        <h2 className="text-lg md:text-xl font-semibold text-white">
           Students vs Health Defects
         </h2>
-        <span className="text-sm text-gray-400">
+        <span className="text-xs md:text-sm text-gray-400">
           Click on a bar to explore
         </span>
       </div>
