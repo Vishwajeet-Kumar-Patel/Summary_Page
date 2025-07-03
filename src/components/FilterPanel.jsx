@@ -112,7 +112,7 @@ export default function FilterPanel({ data, setFilteredData }) {
         ))}
       </select>
 
-      {/* Age Group Filter */}
+      {/* Age Group Filter 
       <select
         value={ageGroup}
         onChange={(e) => setAgeGroup(e.target.value)}
@@ -123,16 +123,16 @@ export default function FilterPanel({ data, setFilteredData }) {
         <option value="10–14">10–14</option>
         <option value="15–18">15–18</option>
         <option value="18+">18+</option>
-      </select>
+      </select> */}
 
-      {/* Search Box */}
+      {/* Search Box 
       <input
         type="text"
         placeholder="Search..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="bg-[#2a2d3e] border border-[#3b3f55] text-sm text-white rounded-lg px-3 py-1 w-full sm:w-[160px]"
-      />
+      /> */}
 
       {/* Reset Button */}
       <div className="w-full sm:w-auto ml-auto">
