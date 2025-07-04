@@ -1,42 +1,37 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
+import OtpVerificationPage from "./pages/OtpVerificationPage";
+import HealthSummary from "./pages/HealthSummary";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./contexts/AuthContext";
+import React from "react";
 
-// Pages
-import LoginPage from './pages/LoginPage';
-import HealthSummary from './pages/HealthSummary';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
-
-// 🔒 Protected Route Wrapper
-const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = !!localStorage.getItem('token');
-  return isAuthenticated ? children : <Navigate to="/" replace />;
-};
-
-export default function App() {
+function App() {
   return (
-    <Router>
-      <Routes>
-
-        {/* 🔐 Login Page (Default Entry) */}
-        <Route path="/" element={<LoginPage />} />
-
-        {/* 🔑 Forgot Password (Open Route) */}
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-
-        {/* 📊 Protected Dashboard */}
-        <Route
-          path="/summary"
-          element={
-            <ProtectedRoute>
-              <HealthSummary />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* 🔁 Fallback to Login for Unknown Routes */}
-        <Route path="*" element={<Navigate to="/" />} />
-        
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route
+            path="/reset-password/:id/:token"
+            element={<ResetPasswordPage />}
+          />
+          <Route path="/verify-otp" element={<OtpVerificationPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <HealthSummary />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
+export default App;
